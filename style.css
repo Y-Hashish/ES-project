@@ -1,0 +1,122 @@
+:root {
+  --radius: 10px;
+  --bg-color: #f3f3f3; /* Extracted to a variable for easier theme management */
+  --text-color: #333;
+}
+
+/* 1. Global Reset & Box Sizing Optimization */
+* {
+  padding: 0;
+  margin: 0;
+  /* CRITICAL: Ensures padding and borders are included in the element's total width and height. 
+     Without this, your 100% width search input was overflowing its container due to its padding. */
+  box-sizing: border-box;
+  font-family:
+    "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Added a clean default font */
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none; /* Removes the default blue underline from all links */
+  color: var(--text-color);
+}
+
+/* 2. Navbar Layout Optimization */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-color);
+  border-radius: 5px;
+  /* Swapped `padding: 0px 20%` for a more standard responsive approach. 
+     20% padding squishes the navbar too much on smaller screens. */
+  padding: 15px 5%;
+  max-width: 1400px; /* Prevents the navbar from stretching infinitely on ultra-wide monitors */
+  margin: 0 auto;
+}
+
+.logo-img {
+  height: 75px; /* Moved from HTML to CSS */
+  display: block;
+}
+
+.nav-items {
+  display: flex;
+  align-items: center;
+  gap: 30px; /* Slightly increased the gap so items don't feel clustered */
+}
+
+/* 3. Dropdown Structure & Positioning Fixes */
+.dropdown {
+  position: relative; /* CRITICAL: This traps the absolute positioning of .dropdown-content inside this specific <li> */
+  cursor: pointer;
+  padding: 10px 0; /* Gives a larger hover area so the menu doesn't disappear when moving the mouse down */
+}
+
+.dropdown-content {
+  visibility: hidden;
+  opacity: 0;
+  /* Changed from -15px to 10px so the menu drops "down" into place rather than floating up */
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 100;
+  position: absolute;
+  top: 100%; /* Pushes the dropdown exactly below the navbar */
+  left: 0;
+  background-color: #ffffff; /* Added a solid background so content behind it doesn't bleed through */
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1); /* Softened the shadow for a modern look */
+  padding: 10px 0;
+  border-radius: var(--radius);
+  min-width: 160px; /* Ensures the dropdown has a nice, uniform width */
+}
+
+.dropdown-content li a {
+  display: block;
+  padding: 10px 20px;
+  transition: background-color 0.2s;
+}
+
+.dropdown-content li a:hover {
+  background-color: #f0f0f0; /* Adds a nice hover state to the individual dropdown links */
+}
+
+.dropdown:hover .dropdown-content {
+  visibility: visible; /* Make element visible */
+  opacity: 1; /* Full opacity */
+  transform: translateY(0); /* Drop menu into its natural place */
+}
+
+/* 4. Search Input Refinements */
+.search-container {
+  position: relative;
+  width: 300px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 10px 10px 40px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  outline: none;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease; /* Added a smooth shadow transition */
+}
+
+.search-input:focus {
+  border-color: #000;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.2); /* Adds a subtle blue glow when typing */
+}
+
+.search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  pointer-events: none;
+}

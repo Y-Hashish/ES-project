@@ -1,0 +1,435 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* prevent padding/margin from causing overflow */
+}
+
+body {
+  min-height: 100vh;
+  /* background-image: url(images/background.jpg); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: sans-serif, "Integral CF";
+  overflow-x: hidden; /* prevent horizontal scroll on small screens */
+}
+
+nav {
+  background-color: white;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+  padding: 0 1rem; /* add horizontal breathing room */
+}
+
+.container {
+  width: 90%;
+  margin: 0px auto;
+}
+
+nav ul {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap; /* allow nav items to wrap instead of overflowing */
+  gap: 0.5rem; /* space between nav items */
+  justify-content: flex-end;
+  align-items: center;
+}
+
+nav li {
+  height: 50px;
+  min-width: 0; /* allow flex items to shrink properly */
+  display: flex;
+  align-items: center; /* vertically center children like the input */
+}
+
+nav a {
+  height: 100%;
+  padding: 0 30px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+nav a:hover {
+  background-color: #f0f0f0;
+}
+
+nav li:first-child {
+  margin-right: auto;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 250px;
+  z-index: 999;
+  background-color: rgba(255, 255, 255, 0.147);
+  backdrop-filter: blur(10px);
+  box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+  visibility: hidden;
+  opacity: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  transform: translateX(100px);
+  transition: all 0.3s ease;
+}
+
+.show {
+  visibility: visible;
+  display: flex;
+  transform: translateX(0px);
+  opacity: 1;
+}
+.sidebar li {
+  width: 100%;
+}
+
+.sidebar a {
+  width: 100%;
+}
+.search-container {
+  position: relative;
+  width: 100%;
+  max-width: 250px; /* keep search input from stretching too wide on large screens */
+  min-width: 0; /* ensure flex items can shrink without overflowing */
+  flex: 1 1 250px; /* allow the input container to shrink/grow in nav flex layout */
+}
+
+.search-input {
+  width: 100%;
+  max-width: 250px; /* never exceed the designed width */
+  min-width: 0; /* allow shrinking inside flex containers */
+  padding: 10px 10px 10px 40px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  outline: none;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease; /* Added a smooth shadow transition */
+}
+
+.search-input:focus {
+  border-color: #000;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.2); /* Adds a subtle blue glow when typing */
+}
+
+.search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  pointer-events: none;
+}
+
+.menu-btn {
+  display: none;
+}
+
+.logo {
+  height: 75px;
+}
+
+@media (max-width: 800px) {
+  .hideOnMobile {
+    display: none;
+  }
+  .menu-btn {
+    display: block;
+  }
+}
+
+@media (max-width: 400px) {
+  .sidebar {
+    width: 100%;
+  }
+}
+
+/* ============================= */
+
+.panner {
+  display: flex;
+  height: 600px; /* Your desired height */
+  /* overflow: hidden; */
+  gap: 20px;
+  padding: 0px 50px;
+  background-color: #f2f0f1;
+  .content {
+    width: 50%;
+    /* Optional: Centers the text vertically inside the 600px height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .photo {
+    width: 50%;
+  }
+
+  /* Target the image inside the photo div */
+  .photo img {
+    /* border-radius: 10px; */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image fills the space without squishing */
+    object-position: center; /* Keeps the focal point of the image centered */
+  }
+}
+
+.content {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.numbers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* gap: 20px; */
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.numbers-content {
+  border-left: 1px solid gray;
+  padding-left: 20px;
+}
+
+.numbers-content:first-child {
+  border-left: none;
+}
+@media (max-width: 800px) {
+  .numbers {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+  }
+  .numbers-content:last-child {
+    border-left: none;
+    grid-column: auto;
+  }
+  .panner {
+    padding: 5px;
+    text-align: center;
+    align-items: center;
+    .content {
+      align-items: center;
+      width: 100%;
+    }
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    .photo {
+      width: 100%;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.btn {
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  color: white;
+  background-color: black;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.2s ease-in-out;
+}
+.btn:hover {
+  background-color: #333333;
+}
+.btn:active {
+  background-color: #6b6b6b;
+}
+.brands-container {
+  background-color: black;
+  color: white;
+  padding: 25px 0px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.brands {
+  display: inline-block;
+  animation: scroll 20s linear infinite;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+.panner-header {
+  font-size: 64px;
+}
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.new-arrival {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin: 50px auto;
+  width: 90%;
+}
+.products {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-arrival-items {
+  /* width: 295px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+
+  img {
+    border-radius: 10px;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+.rating {
+  display: flex;
+  gap: 5px;
+}
+.new-arrival > h2 {
+  color: black;
+  font-size: 48px;
+}
+
+@media (max-width: 800px) {
+  .products {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/*====================================*/
+
+.in-stock {
+  background-color: rgba(0, 255, 0, 0.212);
+  color: rgb(0, 177, 0);
+  padding: 5px 10px;
+  border-radius: 10px;
+  width: fit-content;
+}
+.out-stock {
+  background-color: rgba(255, 0, 0, 0.212);
+  color: rgb(255, 0, 0);
+  padding: 5px 10px;
+  border-radius: 10px;
+  width: fit-content;
+}
+
+/* 1. The Container */
+.image-container {
+  position: relative;
+  display: inline-block; /* Keeps the container tightly wrapped around the image */
+  overflow: hidden; /* Ensures the overlay doesn't spill out */
+}
+
+/* 2. The Image */
+.image-container img {
+  display: block; /* Removes the tiny space underneath images */
+  width: 100%;
+  max-width: 300px; /* Adjust to your needs */
+  height: auto;
+}
+
+/* 3. The Grey Transparent Layer */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+
+  /* rgba(Red, Green, Blue, Alpha transparency) */
+  /* 128, 128, 128 is grey, 0.5 means 50% transparent */
+  background-color: rgba(128, 128, 128, 0.6);
+
+  /* Start hidden */
+  opacity: 0;
+
+  /* The animation: affects opacity, lasts 0.3 seconds, smooth ease in/out */
+  transition: opacity 0.3s ease;
+}
+
+/* 4. The Hover Effect */
+/* When you hover over the container, change the overlay's opacity to 1 (fully visible) */
+.image-container:hover .overlay {
+  opacity: 1;
+}
+
+/* .single-comment {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #ddd;
+  padding: 5px 10px;
+  border-radius: 10px;
+  display: inline-block;
+  animation: scroll 10s linear infinite;
+}
+.comments {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+} */
+
+.single-comment {
+  width: 350px;
+  padding: 10px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.comment-track {
+  display: flex;
+  gap: 20px;
+  width: max-content; /* Forces the track to stretch as wide as all the cards combined */
+
+  /* The animation: name, duration, speed curve, and loop forever */
+  animation: scroll 20s linear infinite;
+}
+
+.comment-track:hover {
+  /* transition:; */
+  animation-play-state: paused;
+}
+
+.comments {
+  width: 100%;
+  overflow: hidden;
+  padding: 40px 0;
+  /* background-color: #f8f9fa; */
+}
+
+.heading {
+  font-size: 48px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
