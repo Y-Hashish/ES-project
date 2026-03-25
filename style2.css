@@ -473,65 +473,112 @@ nav li:first-child {
 }
  */
 
-.single-image {
+/* 1. Main Container Enhancements */
+.dress-style {
+  background-color: #f0f0f0;
+  border-radius: 15px;
+  /* CHANGED: Adjusted padding for better breathing room on top and bottom */
+  padding: 50px 40px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-  width: auto;
-  height: 400px;
-  /* border-radius: 12px; */
-  overflow: hidden;
+  /* ADDED: Max-width keeps the section from stretching too far on ultra-wide desktop monitors */
+  width: 90%;
+  max-width: 1200px;
+  margin: 75px auto;
+  gap: 40px; /* CHANGED: Slightly reduced the gap for a tighter layout */
 }
+
+.dress-style h3 {
+  /* CHANGED: Dropped the font size slightly so it doesn't overpower the images */
+  font-size: 40px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 0; /* ADDED: Resets browser default margins to keep spacing perfectly controlled by the 'gap' */
+}
+
+/* 2. The Grid System */
+.images {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%; /* ADDED: Ensures the grid stretches to fill the white wrapper */
+  /* REMOVED: justify-content and align-items. Grids naturally stretch to fill rows, removing these ensures perfect alignment */
+}
+
+/* 3. The Individual Card */
+.single-image {
+  /* CHANGED: Removed Flexbox. Added 'position: relative' so we can stack the text over the image */
+  position: relative;
+  width: 100%;
+  height: 350px; /* CHANGED: Reduced from 400px to keep the overall grid from getting too tall */
+  border-radius: 20px; /* MOVED: Put the border-radius on the parent container instead of the image */
+  overflow: hidden; /* CRITICAL: This acts as a mask. When the image zooms on hover, it won't break outside the rounded corners */
+  cursor: pointer; /* ADDED: Shows a pointer finger so users know they can click the category */
+}
+
+/* 4. The Image Inside the Card */
 .single-image > img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 15px;
-  transition: all 0.3s ease-in-out;
-  /* object-position: center; */
+  /* CHANGED: Using 'transform' for the transition instead of 'all' makes animations much smoother and better for performance */
+  transition: transform 0.4s ease-in-out;
+  /* REMOVED: border-radius (handled by parent now) */
 }
 
-.images {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
+/* 5. The Hover Effect */
+.single-image:hover > img {
+  /* CHANGED: Replaced the standalone 'scale' property with 'transform: scale()' for better browser compatibility */
+  transform: scale(1.08);
 }
 
+/* 6. Text Overlay Styling (NEW) */
+.single-image h5 {
+  /* ADDED: This places the text directly over the image */
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  margin: 0;
+
+  /* ADDED: Styling to make the text look like a modern e-commerce "badge" */
+  font-size: 20px;
+  font-weight: bold;
+  color: #111;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.85
+  ); /* A slightly transparent white background */
+  padding: 8px 16px;
+  border-radius: 30px; /* Makes it a pill shape */
+  backdrop-filter: blur(5px); /* Adds a frosted glass effect behind the text */
+  z-index: 10;
+}
+
+/* 7. Grid Column Spanning */
 .two {
   grid-column: span 2;
+  /* REMOVED: The nested img CSS block. 
+     You don't need it because '.single-image > img' already forces the image 
+     to be 100% width/height and 'object-fit: cover'. It will naturally fill the spanned space! */
+}
 
-  img {
-    width: 100%; /* Ensures the image fills the grid column horizontally */
-    height: 100%; /* Ensures it fills the container vertically */
-    object-fit: cover; /* Crops the image so it doesn't stretch or warp */
-    object-position: center; /* Forces the bottom of the image to stay visible during the crop */
+/* 8. Mobile Responsiveness (NEW BONUS) */
+@media (max-width: 768px) {
+  .images {
+    /* Changes the layout from 3 columns to 1 column on phones */
+    grid-template-columns: 1fr;
+  }
+  .two {
+    /* Disables the span so the wider images don't break off the screen on mobile */
+    grid-column: span 1;
+  }
+  .single-image {
+    height: 250px; /* Makes the cards a bit shorter to save scrolling space on phones */
   }
 }
-
-.dress-style {
-  background-color: #f0f0f0;
-  border-radius: 15px;
-  padding: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 90%;
-  margin: 75px auto;
-  gap: 50px;
-  h3 {
-    font-size: 48px;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-}
-
-.single-image img:hover {
-  scale: 1.1;
-}
-
 .comments {
   display: flex;
   flex-direction: column;
@@ -562,4 +609,93 @@ nav li:first-child {
   width: 90%;
   margin: 0px auto;
   align-items: center;
+}
+
+.subscribe {
+  background-color: #000;
+  display: flex;
+  width: 90%;
+  margin: 0px auto;
+  padding: 50px;
+  border-radius: 20px;
+  gap: 75px;
+  transform: translateY(50%);
+}
+
+.subscribe > h3 {
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+.btn-white {
+  background-color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+  padding: 10px;
+  width: 70%;
+}
+
+.form > input {
+  padding: 10px;
+  width: 70%;
+  border-radius: 20px;
+}
+
+.logo2 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 245px;
+}
+.logo2 > img {
+  width: 250px;
+  object-fit: cover;
+}
+
+.logo2 > p {
+  font-size: 14px;
+  color: #666;
+}
+
+.social > img {
+  width: 28px;
+  border-radius: 50%;
+}
+
+.footer {
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+  padding: 50px;
+  padding-top: 150px;
+  margin: 0px auto;
+  justify-content: space-between;
+  background-color: #f0f0f0;
+}
+
+.list > ul {
+  list-style: none;
+  font-size: 18px;
+  color: #666;
+  line-height: 2.5em;
+}
+.list > ul :first-child {
+  color: #000;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 25px;
+}
+.copy-right {
+  color: #666;
+  padding: 50px;
+  background-color: #f0f0f0;
 }
