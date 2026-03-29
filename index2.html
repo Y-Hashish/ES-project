@@ -22,7 +22,7 @@
     <title>Document</title>
   </head>
   <body>
-    <nav>
+    <!-- <nav>
       <ul class="sidebar" id="sidebar">
         <li id="sidebarCloseBtn">
           <a href="#" aria-label="Close sidebar">
@@ -94,6 +94,39 @@
           </li>
         </ul>
       </div>
+    </nav> -->
+    <nav class="main-nav" id="main-nav">
+      <div class="main-logo">
+        <a href="#">shop.co</a>
+      </div>
+
+      <div class="links">
+        <ul>
+          <li><a href="#">Category</a></li>
+          <li><a href="#">New Arrivals</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-actions">
+        <div class="search">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="20px"
+            viewBox="0 -960 960 960"
+            width="20px"
+            fill="#828282"
+          >
+            <path
+              d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"
+            />
+          </svg>
+          <input type="text" placeholder="Search for products..." />
+        </div>
+
+        <div class="cart">
+          <a href="#">Cart (0)</a>
+        </div>
+      </div>
     </nav>
 
     <div class="panner">
@@ -135,19 +168,12 @@
     </div>
 
     <div class="new-arrival">
-      <h2 class="heading">New arrivals</h2>
-      <div class="products" id="products">
-        <!-- <div class="new-arrival-items">
-          <img src="images/background.jpg" alt="" id="product-img" />
-          <h5 id="product-title">Descriptive text for a T-shirt</h5>
-          <div class="rating">
-            <div id="product-stock">stars</div>
-          </div>
-          <div class="price" id="product-price">120$</div>
-        </div> -->
-      </div>
+      <h2 class="heading">New Arrivals</h2>
+
+      <div class="products" id="products"></div>
+
       <div>
-        <a class="btn btn-dark" href="#">Show more</a>
+        <a class="btn-dark" href="#">Show More</a>
       </div>
     </div>
 
@@ -155,7 +181,7 @@
       <h2 class="heading">Top selling</h2>
       <div id="top-selling" class="products"></div>
       <div>
-        <a class="btn btn-dark" href="#">Show more</a>
+        <a class="btn-dark" href="#">Show More</a>
       </div>
     </div>
     <div class="dress-style">
