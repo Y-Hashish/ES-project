@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <link rel="stylesheet" href="single-product.css" />
+  </head>
+  <body>
+    <!-- navbar -->
+    <div class="top-banner" id="topBanner">
+      Sign up and get 20% off to your first order.
+      <a class="a-banner" href="#">Sign Up Now</a>
+      <button id="closeBtn">✕</button>
+    </div>
+    <nav class="navbar">
+      <div class="nav-inner">
+        <!-- logo -->
+        <a href="index.html" class="logo">SHOP.CO</a>
+        <!-- nav-links -->
+        <ul class="nav-links">
+          <li><a href="category.html">Shop ▾</a></li>
+          <li><a href="category.html">On Sale</a></li>
+          <li><a href="category.html">New Arrivals</a></li>
+          <li><a href="category.html">Brands</a></li>
+        </ul>
+        <!-- search -->
+        <div class="nav-search">
+          <i data-feather="search"></i>
+          <input type="text" placeholder="Search for products..." />
+        </div>
+        <!-- icons -->
+        <div class="nav-icons">
+          <a href="cart.html" class="icon-btn">
+            <i data-feather="shopping-cart"></i>
+          </a>
+          <a href="#" class="icon-btn">
+            <i data-feather="user"></i>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="product-descrip">
+      <div class="prod-image">
+        <div class="product-slider">
+          <div class="slider-track" id="slider-track"></div>
+        </div>
+      </div>
+      <div class="descrip">
+        <h1 id="prod-name">Name</h1>
+        <div class="rating-value">
+
+          <div id="rating"></div>
+          <span id="rating-value"></span>
+        </div>
+        <div class="price-discount">
+          <span class="price" id="prod-price">$123</span>
+          <span class="discount" id="prod-discount">-49%</span>
+        </div>
+        <p id="prod-discrip">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur,
+          consectetur. Officia, numquam asperiores? Quasi quis at tenetur
+          tempora cupiditate minima quod laboriosam dolore deleniti? Quaerat
+          eveniet illum at reprehenderit in.
+        </p>
+
+        <div class="stock">
+          <span id="stock-value"></span>
+        </div>
+        <div class="size">
+          <h3>Choese Size</h3>
+          <div>
+            <button class="size-btn">S</button>
+            <button class="size-btn">M</button>
+            <button class="size-btn">L</button>
+            <button class="size-btn">XL</button>
+          </div>
+        </div>
+        <div class="quantity-add">
+          <div class="quantity">
+            <button class="minus" id="minus">-</button>
+            <input type="number" id="quantity" value="1" min="1" />
+            <button class="plus" id="plus">+</button>
+          </div>
+          <div class="add">
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="single-product.js"></script>
+  </body>
+</html>

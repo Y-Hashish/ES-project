@@ -1,0 +1,301 @@
+/*  navbar */
+.navbar {
+  padding: 0 40px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: white;
+  border-bottom: 1px solid #f0f0f0;
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  height: 70px;
+}
+.logo {
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: -2px;
+}
+.nav-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  opacity: 0.5;
+}
+.nav-search {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f0f0f0;
+  border-radius: 100px;
+  padding: 0 16px;
+  max-width: 500px;
+}
+.nav-search input {
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  width: 100%;
+  outline: none;
+  padding: 10px 0;
+}
+.nav-icons {
+  display: flex;
+  gap: 16px;
+}
+.icon-btn {
+  cursor: pointer;
+  color: black;
+}
+.icon-btn:hover {
+  opacity: 0.6;
+}
+
+.top-banner {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 10px 40px;
+  font-size: 14px;
+  position: relative;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.top-banner a {
+  color: white;
+  text-decoration: underline;
+  font-weight: bold;
+}
+#closeBtn {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+/*    ======================== */
+
+/* The wrapper keeps the two layers of stars stacked on top of each other */
+.star-rating-wrapper {
+  position: relative;
+  display: inline-block;
+  font-size: 18px; /* Size of the stars */
+  line-height: 1;
+  color: #e5e7eb; /* The color of the empty stars (Soft Gray) */
+  font-family: Arial, sans-serif; /* Ensures the unicode stars render cleanly */
+}
+
+/* The filled stars sit perfectly on top of the empty stars */
+.stars-filled {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap; /* Prevents the stars from wrapping to a new line */
+  overflow: hidden; /* CRITICAL: Hides the gold stars that fall outside the percentage width */
+  color: #fbbf24; /* The color of the filled stars (Gold/Yellow) */
+}
+/* 1. The Window */
+.product-slider {
+  position: relative;
+  width: 100%;
+  max-width: 500px; /* Adjust based on your layout */
+  aspect-ratio: 1 / 1; /* Keeps the slider a perfect square */
+  overflow: hidden; /* CRITICAL: Hides the images that aren't currently active */
+  border-radius: 16px;
+  background-color: #f9fafb;
+}
+
+/* 2. The Filmstrip */
+.slider-track {
+  display: flex;
+  height: 100%;
+  width: 100%;
+
+  /* The animation: affects transform, lasts 0.5s, starts and ends smoothly */
+  transition: transform 0.5s ease-in-out;
+}
+
+/* 3. The Individual Images */
+.slide {
+  /* Forces every image to be exactly 100% the width of the main container */
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-descrip {
+  display: flex;
+  gap: 40px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+  align-items: center;
+}
+
+.descrip {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.prod-image {
+  width: 50%;
+}
+
+.price-discount {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.discount {
+  background-color: rgba(255, 0, 0, 0.185);
+  color: red;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 16px;
+}
+
+#prod-name {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 32px;
+}
+
+#prod-discrip {
+  font-size: 16px;
+  color: #666;
+}
+
+.size {
+  h3 {
+    font-size: 16px;
+    color: #666;
+    font-weight: 100;
+  }
+}
+
+.size-btn {
+  background-color: #f0f0f0;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  padding: 10px 20px;
+  cursor: pointer;
+  &:hover {
+    background-color: #d1d1d1;
+  }
+  &:active {
+    background-color: #000;
+  }
+}
+
+.quantity {
+  background-color: #f0f0f0;
+  width: fit-content;
+  display: flex;
+  gap: 0;
+  align-items: center;
+  border-radius: 20px;
+  button {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+}
+.plus:hover {
+  background-color: #d1d1d1;
+  border-radius: 0 25px 25px 0;
+}
+
+#quantity {
+  width: 40px;
+  text-align: center;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  &:focus {
+    outline: none;
+    border: none;
+  }
+}
+
+.rating-value {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  #rating-value {
+    font-size: 16px;
+    color: #000;
+    font-weight: 100;
+  }
+}
+.minus:hover {
+  background-color: #d1d1d1;
+  border-radius: 25px 0 0 25px;
+}
+.add {
+  width: 100%;
+}
+.add-to-cart {
+  background-color: black;
+  color: white;
+  border: none;
+  font-size: 16px;
+  padding: 15px 0;
+  width: 100%;
+  border-radius: 20px;
+  cursor: pointer;
+  &:hover {
+    background-color: #333;
+  }
+}
+
+.quantity-add {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  align-items: center;
+}
+
+.in-stock {
+  background-color: rgba(0, 128, 0, 0.185);
+  color: green;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 16px;
+}
+.out-stock {
+  background-color: rgba(255, 0, 0, 0.185);
+  color: red;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 16px;
+}
