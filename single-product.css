@@ -299,3 +299,154 @@ a {
   border-radius: 20px;
   font-size: 16px;
 }
+
+.review-card {
+  padding: 10px 20px;
+  border: 1px solid #d2d2d2;
+  border-radius: 20px;
+  h4 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  p {
+    font-size: 16px;
+    color: #666;
+  }
+  span {
+    font-size: 14px;
+    color: #999;
+  }
+}
+
+.reviews {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* 1. Main Container */
+.product-details {
+  box-sizing: border-box;
+  max-width: 1200px;
+  width: 100%;
+  margin: 60px auto; /* CHANGED: Increased from 40px for better page spacing */
+  padding: 30px 40px; /* CHANGED: Increased padding for a spacious, premium feel */
+
+  /* CHANGED: Softened the border and added a subtle shadow */
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+
+  /* REMOVED: height: 4px; This was collapsing your container! */
+
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+/* 2. Header Block */
+.details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb; /* ADDED: A line to separate the title from the specs */
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.details-header h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111;
+  margin: 0;
+}
+
+/* 3. The Specs Grid */
+.specs-grid {
+  display: grid;
+  /* ADDED: Auto-fit makes this automatically responsive. 
+     It will be 3 or 4 columns on desktop, and automatically drop to 1 column on mobile. */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.spec-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* 4. Standardized Labels (Replaces your old <h4>) */
+.label {
+  font-size: 13px;
+  color: #6b7280; /* A soft gray so the user's eye goes to the data first */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+/* 5. Standardized Values (Replaces your old <span>) */
+.value {
+  font-size: 16px;
+  color: #111; /* High contrast black for readability */
+  font-weight: 500;
+}
+
+/* 6. Description Block */
+.description-block {
+  /* ADDED: A soft gray background box makes the long text block stand out */
+  background-color: #f9fafb;
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid #f3f4f6;
+}
+
+.description-block p {
+  margin: 12px 0 0 0;
+  font-size: 15px;
+  line-height: 1.7; /* CHANGED: Increased line-height makes paragraphs much easier to read */
+
+  /* CHANGED: font-weight: 100 is too thin and causes eye strain. Normal weight is 400. */
+  font-weight: 400;
+  color: #4b5563;
+}
+
+.tabs-btn {
+  display: flex;
+}
+
+.tab-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  padding: 10px 20px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.container {
+  /* CHANGED: Removed display: flex and transition. This acts purely as a static window now. */
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+  overflow: hidden; /* Keeps the inactive tab hidden */
+}
+
+/* ADDED: This is the engine of the slider. It holds the tabs side-by-side and animates. */
+.tabs-track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.tab {
+  flex: 0 0 100%; /* Forces both tabs to be exactly 100% of the container's width */
+  width: 100%;
+  /* CHANGED: Removed height: 100%. Allowing the height to be dynamic prevents long descriptions from getting cut off. */
+}

@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "index2.html";
   }
 });
+var reviews = document.getElementById("reviews");
 var stock;
 function fetchSingleProduct(id) {
   fetch("https://dummyjson.com/products/" + id)
@@ -45,6 +46,43 @@ function fetchSingleProduct(id) {
         track.appendChild(img);
         console.log(p);
       });
+      p.reviews.forEach((e) => {
+        const reviewCard = document.createElement("div");
+        const reviewRating = document.createElement("div");
+        const reviewName = document.createElement("h4");
+        const reviewText = document.createElement("p");
+        const reviewDate = document.createElement("span");
+        reviewCard.classList.add("review-card");
+
+        reviewRating.innerHTML = generateStarRating(e.rating);
+        reviewName.textContent = e.reviewerName;
+        reviewText.textContent = e.comment;
+        reviewDate.textContent = new Date(e.date).toLocaleDateString();
+
+        reviewCard.append(reviewRating, reviewName, reviewText, reviewDate);
+        reviews.appendChild(reviewCard);
+      });
+
+      const title = document.getElementById("title");
+      const category = document.getElementById("category");
+      const brand = document.getElementById("brand");
+      const dimensions = document.getElementById("dimensions");
+      const warranty = document.getElementById("warranty");
+      const shipping = document.getElementById("shipping");
+      const discrip2 = document.getElementById("discrip");
+      const rate = document.getElementById("rate");
+      rate.innerHTML = generateStarRating(p.rating);
+      discrip2.textContent = p.description;
+      title.textContent = p.title;
+      category.textContent = p.category;
+      brand.textContent = p.brand;
+      dimensions.textContent = `${p.dimensions.width} x ${p.dimensions.height} x ${p.dimensions.depth} cm`;
+      warranty.textContent = p.warrantyInformation
+        ? p.warrantyInformation
+        : "No warranty information available";
+      shipping.textContent = p.shippingInformation
+        ? p.shippingInformation
+        : "No shipping information available";
     });
 }
 function generateStarRating(rating) {
@@ -123,4 +161,22 @@ quantity.addEventListener("change", () => {
     quantity.value = 1;
   }
 });
+
+const details = document.getElementById("details");
+const reviewsTab = document.getElementById("reviews");
+
+function detailstab() {
+  /* CHANGED: Targeted the new inner track instead of the outer container */
+  const track = document.getElementById("tabs-track");
+  
+  /* CHANGED: Details is the first item, so we move back to the start (0%) */
+  track.style.transform = `translateX(0%)`;
+}
+
+function reviewstab() {
+  /* CHANGED: Targeted the new inner track */
+  const track = document.getElementById("tabs-track");
+  /* CHANGED: Reviews is the second item, so we slide the track left by 100% */
+  track.style.transform = `translateX(-100%)`;
+}
 feather.replace();

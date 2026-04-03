@@ -52,7 +52,6 @@
       <div class="descrip">
         <h1 id="prod-name">Name</h1>
         <div class="rating-value">
-
           <div id="rating"></div>
           <span id="rating-value"></span>
         </div>
@@ -87,6 +86,74 @@
           </div>
           <div class="add">
             <button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <div class="tabs-btn">
+        <button class="tab-btn" onclick="detailstab()" data-tab="details">
+          Details
+        </button>
+        <button class="tab-btn" onclick="reviewstab()" data-tab="reviews">
+          Reviews
+        </button>
+      </div>
+
+      <div class="container" id="container">
+        <div class="tabs-track" id="tabs-track">
+          <div class="product-details tab" id="details">
+            <div class="details-header">
+              <h3>Product Details</h3>
+              <div id="rate"></div>
+            </div>
+
+            <div class="specs-grid">
+              <div class="spec-item">
+                <span class="label">Product Name</span>
+                <span class="value" id="title">Loading...</span>
+              </div>
+
+              <div class="spec-item">
+                <span class="label">Category</span>
+                <span class="value" id="category">Loading...</span>
+              </div>
+
+              <div class="spec-item">
+                <span class="label">Brand</span>
+                <span class="value" id="brand">Loading...</span>
+              </div>
+
+              <div class="spec-item">
+                <span class="label">Dimensions</span>
+                <span class="value" id="dimensions">10 x 10</span>
+              </div>
+
+              <div class="spec-item">
+                <span class="label">Warranty Info</span>
+                <span class="value" id="warranty">Loading...</span>
+              </div>
+
+              <div class="spec-item">
+                <span class="label">Shipping Info</span>
+                <span class="value" id="shipping">Loading...</span>
+              </div>
+            </div>
+
+            <div class="description-block">
+              <span class="label">Description</span>
+              <p id="discrip">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta,
+                eligendi maiores. Veniam fuga itaque enim, quia esse eligendi
+                qui aliquid non eveniet repellendus ullam aut ex reiciendis,
+                suscipit, adipisci eaque.
+              </p>
+            </div>
+          </div>
+
+          <div class="reviews tab" id="reviews">
+            <!-- <h3>Reviews will go here</h3> -->
           </div>
         </div>
       </div>
