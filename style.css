@@ -120,3 +120,17 @@ a {
   color: #888;
   pointer-events: none;
 }
+
+.cart {
+  border: 1px solid #888;
+  width: 450px;
+  min-height: 600px;
+  margin: 250px auto;
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding: 50px;
+  h2 {
+    font-size: 40px;
+    font-weight: bold;
+  }
+}

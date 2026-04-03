@@ -1,3 +1,6 @@
+var stock;
+let selectedSize = null; // NEW: Tracks the clicked size
+let currentProduct = null;
 document.addEventListener("DOMContentLoaded", () => {
   const urlQuery = window.location.search;
 
@@ -16,6 +19,7 @@ function fetchSingleProduct(id) {
   fetch("https://dummyjson.com/products/" + id)
     .then((res) => res.json())
     .then((p) => {
+      currentProduct = p;
       const track = document.getElementById("slider-track");
       const rating = document.getElementById("rating");
       const price = document.getElementById("prod-price");
@@ -168,7 +172,7 @@ const reviewsTab = document.getElementById("reviews");
 function detailstab() {
   /* CHANGED: Targeted the new inner track instead of the outer container */
   const track = document.getElementById("tabs-track");
-  
+
   /* CHANGED: Details is the first item, so we move back to the start (0%) */
   track.style.transform = `translateX(0%)`;
 }
@@ -178,5 +182,73 @@ function reviewstab() {
   const track = document.getElementById("tabs-track");
   /* CHANGED: Reviews is the second item, so we slide the track left by 100% */
   track.style.transform = `translateX(-100%)`;
+}
+
+const addToCart = document.getElementById("add-to-cart");
+const sizeBtns = document.querySelectorAll(".size-btn");
+
+sizeBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    sizeBtns.forEach((b) => b.classList.remove("active-size"));
+
+    btn.classList.add("active-size");
+
+    selectedSize = btn.textContent;
+  });
+});
+
+addToCart.addEventListener("click", function () {
+  if (!currentProduct) {
+    alert("Product is still loading...");
+    return;
+  }
+
+  if (!selectedSize) {
+    alert("Please select a size before adding to cart!");
+    return;
+  }
+  const cartItem = {
+    id: currentProduct.id,
+    title: currentProduct.title,
+    price: currentProduct.price,
+    image: currentProduct.images[0], // Grab the first image for the cart thumbnail
+    size: selectedSize,
+    // Ensure quantity is an integer, default to 1 if something goes wrong
+    quantity: parseInt(document.getElementById("quantity").value, 10) || 1,
+  };
+
+  let cart = JSON.parse(localStorage.getItem("shop_co_cart")) || [];
+
+  const existingItemIndex = cart.findIndex(
+    (item) => item.id === cartItem.id && item.size === cartItem.size,
+  );
+
+  if (existingItemIndex > -1) {
+    console.log(existingItemIndex);
+
+    cart[existingItemIndex].quantity += cartItem.quantity;
+  } else {
+    cart.push(cartItem);
+  }
+
+  localStorage.setItem("shop_co_cart", JSON.stringify(cart));
+
+  const originalText = addToCart.textContent;
+  addToCart.textContent = "Added to Cart ✓";
+  addToCart.style.backgroundColor = "#166534"; // Optional: turn green
+  addToCart.style.color = "#fff";
+
+  // Reset the button after 2 seconds
+  setTimeout(() => {
+    addToCart.textContent = originalText;
+    addToCart.style.backgroundColor = "";
+    addToCart.style.color = "";
+  }, 2000);
+});
+// This will return an array of all the products they added!
+
+function local() {
+  const myCartItems = JSON.parse(localStorage.getItem("shop_co_cart"));
+  console.log(myCartItems);
 }
 feather.replace();

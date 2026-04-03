@@ -450,3 +450,8 @@ a {
   width: 100%;
   /* CHANGED: Removed height: 100%. Allowing the height to be dynamic prevents long descriptions from getting cut off. */
 }
+
+.active-size {
+  background-color: #000;
+  color: #fff;
+}
