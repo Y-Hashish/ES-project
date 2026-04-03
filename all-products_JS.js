@@ -1,20 +1,182 @@
-// fetch('https://dummyjson.com/products')
-// .then(res => res.json())
-// .then(console.log);
-// fetch('https://dummyjson.com/products/categories')
-// .then(res => res.json())
-// .then(console.log);
-
 const priceValue = document.getElementById("price-range-value");
 const parent = document.getElementById("product-grid");
-
+let currentproducts_lable = document.getElementById("current-products");
 var maxprice = 0;
 var minprice = 1000000;
 var currentprice = 0;
 var currentproductsingrid ;
+var currentPage =1 ;
+let allProducts = [];
+let currentSort = "Most Popular";
+var firstprodindecator = 0;
+var lastprodindecator = 9;
 
-  function renderProducts(pp = products ,firstprodindecator , lastprodindecator ) {
+renderProductsbylink();
 
+
+function sortProducts(type) {
+  if (!currentproductsingrid) return;
+
+  let sorted = [...currentproductsingrid];
+
+  if (type === "Most Popular") {
+    sorted.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+  }
+
+  if (type === "price-asc") {
+    sorted.sort((a, b) => a.price - b.price);
+  }
+
+  if (type === "price-desc") {
+    sorted.sort((a, b) => b.price - a.price);
+  }
+
+  if (type === "name-asc") {
+    sorted.sort((a, b) => a.title.localeCompare(b.title));
+  }
+
+  if (type === "name-desc") {
+    sorted.sort((a, b) => b.title.localeCompare(a.title));
+  }
+
+  currentPage = 1;
+
+  managePage(sorted);
+  parent.innerHTML = "";
+  renderProducts(sorted, 0, 9);
+  currentproductsingrid = sorted;
+}
+function ratingToStars(rating) {
+  const fullStars = Math.floor(rating);
+  const halfStar = rating - fullStars >= 0.5 ? 1 : 0;
+  const emptyStars = 5 - fullStars - halfStar;
+    return '★'.repeat(fullStars) + (halfStar ? '⯪' : '') + '☆'.repeat(emptyStars);
+}
+ function applyAll() {
+  let result = [...allProducts];
+
+  if (currentprice) {
+    result = result.filter(p => p.price <= currentprice);
+  }
+
+  if (currentSort === "price-asc") {
+    result.sort((a,b)=>a.price-b.price);
+  }
+  if (currentSort === "price-desc") {
+    result.sort((a,b)=>b.price-a.price);
+  }
+
+  currentproductsingrid = result;
+
+  currentPage = 1;
+  managePage(result);
+  parent.innerHTML = "";
+  renderProducts(result, 0, 9);
+}
+function managePage(products) {
+  currentPage = currentPage || 1;
+
+  const totalPages = Math.ceil(products.length / 9);
+  const parentPagination = document.getElementById("pagination-info");
+
+  parentPagination.innerHTML = "";
+
+  function createBtn(i) {
+    const btn = document.createElement("button");
+    btn.textContent = i;
+    btn.classList.add("pagination-btn");
+
+    if (i === currentPage) {
+      btn.classList.add("active");
+    }
+
+    btn.addEventListener("click", () => {
+      currentPage = i;
+      firstprodindecator = (i - 1) * 9;
+      lastprodindecator = i * 9;
+
+      parent.innerHTML = "";
+      renderProducts(products, firstprodindecator, lastprodindecator);
+      currentproducts_lable.textContent = "Showing products " + (firstprodindecator + 1) + " to " + Math.min(lastprodindecator, products.length) + " of " + products.length;
+
+      managePage(products); 
+    });
+
+    parentPagination.appendChild(btn);
+  }
+
+  function createDots() {
+    const span = document.createElement("span");
+    span.textContent = "...";
+    parentPagination.appendChild(span);
+  }
+
+  // Always show first page
+  createBtn(1);
+
+  if (currentPage > 3) {
+    createDots();
+  }
+
+  // Show pages around current page
+  let start = Math.max(2, currentPage - 2);
+  let end = Math.min(totalPages - 1, currentPage + 2);
+
+  for (let i = start; i <= end; i++) {
+    createBtn(i);
+  }
+
+  if (currentPage < totalPages - 2) {
+    createDots();
+  }
+
+  // Always show last page
+  if (totalPages > 1) {
+    createBtn(totalPages);
+  }
+      let nextPageBtn = document.getElementById("next-page");
+      let prevPageBtn = document.getElementById("prev-page");
+
+      nextPageBtn.replaceWith(nextPageBtn.cloneNode(true));
+      prevPageBtn.replaceWith(prevPageBtn.cloneNode(true));
+
+      nextPageBtn = document.getElementById("next-page");
+      prevPageBtn = document.getElementById("prev-page");
+      nextPageBtn.addEventListener("click", () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        firstprodindecator = (currentPage - 1) * 9;
+        lastprodindecator = currentPage * 9;
+      
+        parent.innerHTML = "";
+        currentproducts_lable.textContent = "Showing products " + (firstprodindecator + 1) + " to " + Math.min(lastprodindecator, products.length) + " of " + products.length;
+
+        renderProducts(products, firstprodindecator, lastprodindecator);
+        managePage(products);
+      }
+      });
+      prevPageBtn.addEventListener("click", () => {
+      if (currentPage > 1) {
+        currentPage--;
+        firstprodindecator = (currentPage - 1) * 9;
+        lastprodindecator = currentPage * 9;
+          
+        parent.innerHTML = "";
+
+        currentproducts_lable.textContent = "Showing products " + (firstprodindecator + 1) + " to " + Math.min(lastprodindecator, products.length) + " of " + products.length;
+
+        renderProducts(products, firstprodindecator, lastprodindecator);
+        managePage(products);
+      }
+    });
+
+}
+  function renderProducts(pp ,firstprodindecator , lastprodindecator ) {
+
+    currentproducts_lable.textContent = "Showing products " + (firstprodindecator + 1) + " to " + Math.min(lastprodindecator, pp.length) + " of " + pp.length;
+    const fragment = document.createDocumentFragment();
+
+    
     for (let i = firstprodindecator; i < lastprodindecator && i < pp.length; i++) {
       const p = pp[i];
         // Create Elements
@@ -45,15 +207,12 @@ var currentproductsingrid ;
         rating.classList.add("product-rating");
         stock.classList.add("stock-badge");
 
-
-
-
-        // Populate Data
         image.src = p.images[0];
-        brand.textContent = "YH Market";
+        brand.textContent = p.brand || "YH Market";
         title.textContent = p.title;
         price.textContent = `$${p.price}`;
-        rating.textContent = ratingToStars(p.rating);
+        rating.textContent = ratingToStars(p.rating || 0);
+
         if (Number(p.stock) > 0) {
             stock.textContent = `Stock: ${p.stock}`;
             stock.classList.add("stock-badge", "in-stock");
@@ -61,15 +220,23 @@ var currentproductsingrid ;
             stock.textContent = "Out of stock";
             stock.classList.add("stock-badge", "out-stock");
           }
- 
-    parent.appendChild(productCard);
-    }
-}
 
-fetch('https://dummyjson.com/products?limit=0&skip=&select=title,price,rateing,images')
+          fragment.appendChild(productCard);
+
+ 
+    }
+       parent.appendChild(fragment);
+
+}
+function priceFilter(link) {
+    maxprice = 0;
+    minprice = 1000000;
+
+  fetch(link)
 .then(res => res.json())
 .then((data) => {
     const products = data.products;
+    const priceRange = document.getElementById("price-range");
 
     products.forEach(element => {
         // console.log(element.price);
@@ -81,152 +248,63 @@ fetch('https://dummyjson.com/products?limit=0&skip=&select=title,price,rateing,i
         }
     });
 
-    const priceRange = document.getElementById("price-range");
+    const range = maxprice - minprice;
+
+
     priceRange.min = minprice;
     priceRange.max = maxprice;
-    priceRange.addEventListener("input", () => {
-        priceValue.textContent = `Up to $${priceRange.value}`;
-        currentprice = priceRange.value;
+
+    let step = Math.ceil(range / 100);
+
+    if (step > 1000) step = Math.round(step / 100) * 100;
+    else if (step > 100) step = Math.round(step / 10) * 10;
+
+      priceRange.step = step;
+
+    priceRange.replaceWith(priceRange.cloneNode(true));
+    const newPriceRange = document.getElementById("price-range");
+    newPriceRange.addEventListener("input", () => {
+    priceValue.textContent = `Up to $${newPriceRange.value}`;
+        currentprice = newPriceRange.value;
+
+        if (!currentproductsingrid) return;
+
         const filteredProducts = currentproductsingrid.filter(product => product.price <= currentprice);
-        // console.log(filteredProducts);
+        
+        managePage(filteredProducts);
+        
         parent.innerHTML = "";
         renderProducts(filteredProducts, 0, 9);
-
     });
    
     
 
 })
 .catch((error) => {
-    // It is always a good idea to catch network errors!
-    console.error("Error fetching products:", error);
+  console.error("Error fetching products:", error);
   });
 
-
-//main code
-renderProductsbylink();
-//end of main code
-// Function to convert numeric rating to star representation
-function ratingToStars(rating) {
-  const fullStars = Math.floor(rating);
-  const halfStar = rating - fullStars >= 0.5 ? 1 : 0;
-  const emptyStars = 5 - fullStars - halfStar;
-    return '★'.repeat(fullStars) + (halfStar ? '⯪' : '') + '☆'.repeat(emptyStars);
 }
-// Function to fetch and render products based on the provided link
-function renderProductsbylink( link = "https://dummyjson.com/products?limit=0&skip=&select=title,price,rateing,images") {
+priceFilter("https://dummyjson.com/products?limit=0&skip=&select=title,price,rating,images,stock,brand");
 
-fetch(link)
+function renderProductsbylink( link = "https://dummyjson.com/products?limit=0&skip=&select=title,price,rating,images,stock,brand") {
+  currentPage =1 ; 
+  fetch(link)
   .then((res) => res.json())
   .then((data) => {
     const products = data.products;
+    allProducts = products;
     currentproductsingrid = products;
-    var firstprodindecator = 0;
-    var lastprodindecator = 9;
-    var currentPage ;
-    const totalPages = Math.ceil(products.length / 9);
-
-    const parantofpagination = document.getElementById("pagination-info");
-    parantofpagination.innerHTML = "";
-    for (let i = 1; i <= totalPages; i++) {
-      const pageBtn = document.createElement("button");
-      pageBtn.textContent = i;
-      pageBtn.classList.add("pagination-btn");
-      pageBtn.setAttribute("id", i);
-      parantofpagination.appendChild(pageBtn);
-      pageBtn.addEventListener("click", () => {
-        currentPage = i;
-        firstprodindecator = (i - 1) * 9;
-        lastprodindecator = i * 9;
-        parent.innerHTML = "";
-        renderProducts(products, firstprodindecator, lastprodindecator);
-      });     
-    }   
-    
-    const nextPageBtn = document.getElementById("next-page");
-    nextPageBtn.addEventListener("click", () => {
-      if (currentPage < totalPages) {
-        currentPage++;
-        firstprodindecator = (currentPage - 1) * 9;
-        lastprodindecator = currentPage * 9;
-        parent.innerHTML = "";
-        renderProducts(products, firstprodindecator, lastprodindecator);
-      }
-    });
-    const prevPageBtn = document.getElementById("prev-page");
-    prevPageBtn.addEventListener("click", () => {
-      if (currentPage > 1) {
-        currentPage--;
-        firstprodindecator = (currentPage - 1) * 9;
-        lastprodindecator = currentPage * 9;
-        parent.innerHTML = "";
-        renderProducts(products, firstprodindecator, lastprodindecator);
-      }
-    });
+    managePage(products);
     parent.innerHTML = "";
     renderProducts(products, firstprodindecator, lastprodindecator);
-
-//     function renderProducts(pp = products ,firstprodindecator , lastprodindecator ) {
-//     for (let i = firstprodindecator; i < lastprodindecator && i < pp.length; i++) {
-//       const p = pp[i];
-//         // Create Elements
-//         const productCard = document.createElement("div");
-//         const imageContainer = document.createElement("div");
-//         const image = document.createElement("img");
-//         const overlay = document.createElement("div");
-//         const brand = document.createElement("span");
-//         const title = document.createElement("h5");
-//         const priceAndStock = document.createElement("div");
-//         const stock = document.createElement("div");
-//         const price = document.createElement("div");
-//         const rating = document.createElement("div");
-
-//         imageContainer.append(image, overlay);
-//         priceAndStock.append(price, stock);
-//         productCard.append(imageContainer, brand, title,  rating, priceAndStock);
-
-
-//         // Setup Classes
-//         productCard.classList.add("product-card");
-//         imageContainer.classList.add("image-container");
-//         overlay.classList.add("overlay");
-//         priceAndStock.classList.add("price-stock-wrapper");
-//         price.classList.add("product-price");
-//         brand.classList.add("product-brand");
-//         title.classList.add("product-title");
-//         rating.classList.add("product-rating");
-//         stock.classList.add("stock-badge");
-
-
-
-
-//         // Populate Data
-//         image.src = p.images[0];
-//         brand.textContent = "YH Market";
-//         title.textContent = p.title;
-//         price.textContent = `$${p.price}`;
-//         rating.textContent = ratingToStars(p.rating);
-//         if (Number(p.stock) > 0) {
-//             stock.textContent = `Stock: ${p.stock}`;
-//             stock.classList.add("stock-badge", "in-stock");
-//           } else {
-//             stock.textContent = "Out of stock";
-//             stock.classList.add("stock-badge", "out-stock");
-//           }
- 
-//     parent.appendChild(productCard);
-//     }
-// }
-
   })
   .catch((error) => {
-    // It is always a good idea to catch network errors!
     console.error("Error fetching products:", error);
   }
-
 );
 }
-// Fetch categories and populate the category filter
+
 fetch('https://dummyjson.com/products/category-list')
 .then(res => res.json())
  .then((data) => {
@@ -237,7 +315,8 @@ fetch('https://dummyjson.com/products/category-list')
     categoryLink.href = `#`;
     categoryLink.addEventListener("click", (e) => {
         e.preventDefault();
-        renderProductsbylink(`https://dummyjson.com/products?limit=0&skip=&select=title,price,rateing,images`);
+        renderProductsbylink(`https://dummyjson.com/products?limit=0&skip=&select=title,price,rating,images,stock,brand`);
+        priceFilter(`https://dummyjson.com/products?limit=0&skip=&select=title,price,rating,images,stock,brand`);
     });
     categoryLink.textContent = "All Categories";
     categoryli.appendChild(categoryLink);
@@ -248,18 +327,26 @@ fetch('https://dummyjson.com/products/category-list')
         const categoryLink = document.createElement("a");
         categoryLink.href = `#`;
         categoryLink.addEventListener("click", (e) => {
+            currentPage =1 ;
             e.preventDefault();
             renderProductsbylink(`https://dummyjson.com/products/category/${encodeURIComponent(category)}`);
+            priceFilter(`https://dummyjson.com/products/category/${encodeURIComponent(category)}`);
         });
         categoryLink.textContent = category;
         categoryli.appendChild(categoryLink);
         categoryli.classList.add("category-item");
-        categoryContainer.appendChild(categoryli);
-        
+        categoryContainer.appendChild(categoryli); 
     });
  })
  .catch((error) => {
     console.error("Error fetching categories:", error);
+  });
+
+  const sortOptions = document.getElementById("sort-options");
+  sortOptions.addEventListener("change", () => {
+    var value = sortOptions.value;
+    parent.innerHTML = "";
+    sortProducts(value);
   });
 
 

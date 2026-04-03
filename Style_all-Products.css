@@ -83,6 +83,10 @@
     }
   }
 }
+.pagination-btn.active {
+  background-color: black;
+  color: white;
+}
 
 /* Right Side Actions Wrapper */
 .nav-actions {
@@ -188,4 +192,8 @@
 .sort-options select:focus {
     outline: none;
     border-color: #111;
+}
+#category-filters {
+  max-height: 250px;
+  overflow-y: auto;
 }
