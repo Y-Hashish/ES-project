@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YH-Market</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="cart.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -46,27 +47,11 @@
     </nav>
 
     <div class="cart">
-      <h2>cart</h2>
-      <div class="cart__items">
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi quod
-          delectus, perferendis quisquam eos illum nostrum placeat rem
-          molestias, repellendus consequuntur labore et qui ab culpa, deleniti
-          iusto eaque fugiat?
-        </div>
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi quod
-          delectus, perferendis quisquam eos illum nostrum placeat rem
-          molestias, repellendus consequuntur labore et qui ab culpa, deleniti
-          iusto eaque fugiat?
-        </div>
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi quod
-          delectus, perferendis quisquam eos illum nostrum placeat rem
-          molestias, repellendus consequuntur labore et qui ab culpa, deleniti
-          iusto eaque fugiat?
-        </div>
+      <div>
+        <h2>Cart</h2>
+        <div class="cart__items" id="cart"></div>
       </div>
+      <h3 class="total">Total : <span id="total"></span></h3>
     </div>
     <script src="cart.js"></script>
   </body>
