@@ -152,3 +152,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+const cartPanel = document.getElementById("cart");
+const overlay = document.getElementById("cart-overlay");
+const btn = document.getElementById("cart-btn");
+
+btn.addEventListener("click", () => {
+  cartPanel.classList.toggle("active");
+  overlay.classList.toggle("active");
+});
+
+// Close when clicking outside
+overlay.addEventListener("click", () => {
+  cartPanel.classList.remove("active");
+  overlay.classList.remove("active");
+});

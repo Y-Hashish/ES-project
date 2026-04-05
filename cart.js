@@ -1,4 +1,4 @@
-const cart = document.getElementById("cart");
+const cart = document.getElementById("cart-items");
 const totalPrice = document.getElementById("total");
 
 // Call it once when the page loads
@@ -104,8 +104,8 @@ function showCart() {
         // based on the exact item, rather than relying on the original index.
 
         // Grab fresh data from local storage just in case it changed
-        let currentCart = JSON.parse(localStorage.getItem("shop_co_cart"));
-
+        let currentCart =
+          JSON.parse(localStorage.getItem("shop_co_cart")) || [];
         // Remove the specific item by filtering it out
         currentCart.splice(index, 1);
 
