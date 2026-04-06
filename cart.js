@@ -20,7 +20,7 @@ function showCart() {
     container.classList.add("container");
 
     const imgContainer = document.createElement("div");
-    imgContainer.classList.add("image-container");
+    imgContainer.classList.add("image-container-cart");
 
     const dataContainer = document.createElement("div");
     dataContainer.classList.add("data-container");

@@ -92,12 +92,12 @@
 }
 
 /* IMAGE */
-.image-container {
+.image-container-cart {
   width: 100px;
   height: 100px;
 }
 
-.image-container img {
+.image-container-cart img {
   width: 100%;
   height: 100%;
   object-fit: cover;
