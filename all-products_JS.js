@@ -236,6 +236,9 @@ function renderProducts(pp, firstprodindecator, lastprodindecator) {
     price.textContent = `$${p.price}`;
     rating.textContent = ratingToStars(p.rating || 0);
 
+    productCard.addEventListener("click", () => {
+    window.location.href = `single-product.html?id=${p.id}`;});
+
     if (Number(p.stock) > 0) {
       stock.textContent = `Stock: ${p.stock}`;
       stock.classList.add("stock-badge", "in-stock");
@@ -303,11 +306,11 @@ function priceFilter(link) {
     });
 }
 priceFilter(
-  "https://dummyjson.com/products?limit=0&skip=&select=title,price,rating,images,stock,brand",
+  "https://dummyjson.com/products?limit=0&skip=&select=id,title,price,rating,images,stock,brand",
 );
 
 function renderProductsbylink(
-  link = "https://dummyjson.com/products?limit=0&skip=&select=title,price,rating,images,stock,brand",
+  link = "https://dummyjson.com/products?limit=0&skip=&select=id,title,price,rating,images,stock,brand",
 ) {
   currentPage = 1;
   fetch(link)
@@ -336,10 +339,10 @@ fetch("https://dummyjson.com/products/category-list")
     categoryLink.addEventListener("click", (e) => {
       e.preventDefault();
       renderProductsbylink(
-        `https://dummyjson.com/products?limit=0&skip=&select=title,price,rating,images,stock,brand`,
+        `https://dummyjson.com/products?limit=0&skip=&select=id,title,price,rating,images,stock,brand`,
       );
       priceFilter(
-        `https://dummyjson.com/products?limit=0&skip=&select=title,price,rating,images,stock,brand`,
+        `https://dummyjson.com/products?limit=0&skip=&select=id,title,price,rating,images,stock,brand`,
       );
     });
     categoryLink.textContent = "All Categories";
