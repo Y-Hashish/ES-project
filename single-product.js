@@ -66,7 +66,9 @@ function fetchSingleProduct(id) {
         reviewCard.append(reviewRating, reviewName, reviewText, reviewDate);
         reviews.appendChild(reviewCard);
       });
-
+      const currentpage = document.getElementById("current-product");
+      currentpage.textContent = p.title;
+      
       const title = document.getElementById("title");
       const category = document.getElementById("category");
       const brand = document.getElementById("brand");

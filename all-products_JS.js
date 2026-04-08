@@ -287,6 +287,9 @@ function priceFilter(link) {
       const newPriceRange = document.getElementById("price-range");
       newPriceRange.addEventListener("input", () => {
         priceValue.textContent = `Up to $${newPriceRange.value}`;
+      });
+      newPriceRange.addEventListener("change", () => {
+        // priceValue.textContent = `Up to $${newPriceRange.value}`;
         currentprice = newPriceRange.value;
 
         if (!currentproductsingrid) return;
@@ -356,13 +359,14 @@ fetch("https://dummyjson.com/products/category-list")
       categoryLink.addEventListener("click", (e) => {
         currentPage = 1;
         e.preventDefault();
+        priceValue.textContent = `Filter by your max budget`;
         renderProductsbylink(
           `https://dummyjson.com/products/category/${encodeURIComponent(category)}`,
         );
         priceFilter(
           `https://dummyjson.com/products/category/${encodeURIComponent(category)}`,
         );
-      });
+      }); 
       categoryLink.textContent = category;
       categoryli.appendChild(categoryLink);
       categoryli.classList.add("category-item");
