@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="single-product.css" />
+    <link rel="stylesheet" href="cart.css" />
+  </head>
+  <body>
+    <nav class="main-nav" id="main-nav">
+      <div class="main-logo">
+        <a href="#">shop.co</a>
+      </div>
+
+      <div class="links">
+        <ul>
+          <li><a href="#">Category</a></li>
+          <li><a href="#">New Arrivals</a></li>
+          <li><a href="all-products.html">All Products</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-actions">
+        <div class="search">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="20px"
+            viewBox="0 -960 960 960"
+            width="20px"
+            fill="#828282"
+          >
+            <path
+              d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"
+            />
+          </svg>
+          <input type="text" placeholder="Search for products..." />
+        </div>
+
+        <div class="cart2">
+          <button id="cart-btn">
+            <i class="fa-solid fa-cart-arrow-down"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <div class="cart-overlay" id="cart-overlay"></div>
+
+    <
+    <div class="cart" id="cart">
+      <h2>Cart</h2>
+
+      <div class="cart__items" id="cart-items"></div>
+
+      <h3 class="total">Total : <span id="total"></span></h3>
+    </div>
+
+    <div class="product-descrip">
+      <div class="prod-image">
+        <div class="product-slider">
+          <div class="slider-track" id="slider-track"></div>
+        </div>
+      </div>
+      <div class="descrip">
+        <h1 id="prod-name">Name</h1>
+        <div class="rating-value">
+          <div id="rating"></div>
+          <span id="rating-value"></span>
+        </div>
+        <div class="price-discount">
+          <span class="price" id="prod-price">$123</span>
+          <span class="discount" id="prod-discount">-49%</span>
+        </div>
+        <p id="prod-discrip">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur,
+          consectetur. Officia, numquam asperiores? Quasi quis at tenetur
+          tempora cupiditate minima quod laboriosam dolore deleniti? Quaerat
+          eveniet illum at reprehenderit in.
+        </p>
+
+        <div class="stock">
+          <span id="stock-value"></span>
+        </div>
+        <div class="size">
+          <h3>Choese Size</h3>
+          <div>
+            <button class="size-btn">S</button>
+            <button class="size-btn">M</button>
+            <button class="size-btn">L</button>
+            <button class="size-btn">XL</button>
+          </div>
+        </div>
+        <div class="quantity-add">
+          <div class="quantity">
+            <button class="minus" id="minus">-</button>
+            <input type="number" id="quantity" value="1" min="1" />
+            <button class="plus" id="plus">+</button>
+          </div>
+          <div class="add">
+            <button class="add-to-cart" id="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <div class="tabs-btn">
+        <button class="tab-btn" onclick="detailstab()" data-tab="details">
+          Details
+        </button>
+        <button class="tab-btn" onclick="reviewstab()" data-tab="reviews">
+          Reviews
+        </button>
+      </div>
+
+      <div class="container" id="container">
+        <div class="tabs-track" id="tabs-track">
+          <div class="product-details tab" id="details">
+            <div class="details-header">
+              <h3>Product Details</h3>
+              <div id="rate"></div>
+            </div>
+
+            <div class="specs-grid">
+              <div class="spec-item">
+                <span class="label">Product Name</span>
+                <span class="value" id="title">Loading...</span>
+              </div>
+
+              <div class="spec-item">
+                <span class="label">Category</span>
+                <span class="value" id="category">Loading...</span>
+              </div>
+
+              <div class="spec-item">
+                <span class="label">Brand</span>
+                <span class="value" id="brand">Loading...</span>
+              </div>
+
+              <div class="spec-item">
+                <span class="label">Dimensions</span>
+                <span class="value" id="dimensions">10 x 10</span>
+              </div>
+
+              <div class="spec-item">
+                <span class="label">Warranty Info</span>
+                <span class="value" id="warranty">Loading...</span>
+              </div>
+
+              <div class="spec-item">
+                <span class="label">Shipping Info</span>
+                <span class="value" id="shipping">Loading...</span>
+              </div>
+            </div>
+
+            <div class="description-block">
+              <span class="label">Description</span>
+              <p id="discrip">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta,
+                eligendi maiores. Veniam fuga itaque enim, quia esse eligendi
+                qui aliquid non eveniet repellendus ullam aut ex reiciendis,
+                suscipit, adipisci eaque.
+              </p>
+            </div>
+          </div>
+
+          <div class="reviews tab" id="reviews">
+            <!-- <h3>Reviews will go here</h3> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <button onclick="local()">see local storage</button>
+    <script src="cart.js"></script>
+    <script src="single-product.js"></script>
+  </body>
+</html>

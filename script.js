@@ -39,6 +39,9 @@ fetch("https://dummyjson.com/products")
       overlayBtn.textContent = "Quick View";
       price.textContent = `$${p.price}`;
 
+      overlayBtn.addEventListener("click", () => {
+        window.location.href = `single-product.html?id=${p.id}`;
+      });
       if (Number(p.stock) > 0) {
         stock.textContent = `Stock: ${p.stock}`;
         stock.classList.add("stock-badge", "in-stock");
@@ -100,6 +103,9 @@ fetch("https://dummyjson.com/products/category/tops")
       title.classList.add("product-title");
       price.classList.add("product-price");
 
+      overlayBtn.addEventListener("click", () => {
+        window.location.href = `single-product.html?id=${p.id}`;
+      });
       // Populate Data
       image.src = p.images[0];
       brand.textContent = "YH Market";
@@ -145,4 +151,19 @@ document.addEventListener("DOMContentLoaded", () => {
       navbar.classList.remove("scrolled");
     }
   });
+});
+
+const cartPanel = document.getElementById("cart");
+const overlay = document.getElementById("cart-overlay");
+const btn = document.getElementById("cart-btn");
+
+btn.addEventListener("click", () => {
+  cartPanel.classList.toggle("active");
+  overlay.classList.toggle("active");
+});
+
+// Close when clicking outside
+overlay.addEventListener("click", () => {
+  cartPanel.classList.remove("active");
+  overlay.classList.remove("active");
 });

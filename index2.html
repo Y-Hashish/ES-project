@@ -14,6 +14,7 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="cart.css" />
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
@@ -97,13 +98,14 @@
     </nav> -->
     <nav class="main-nav" id="main-nav">
       <div class="main-logo">
-        <a href="#">shop.co</a>
+        <a href="index2.html">shop.co</a>
       </div>
 
       <div class="links">
         <ul>
           <li><a href="#">Category</a></li>
-          <li><a href="#">New Arrivals</a></li>
+          <li><a href="#newArrival">New Arrivals</a></li>
+          <li><a href="all-products.html">All Products</a></li>
         </ul>
       </div>
 
@@ -123,11 +125,23 @@
           <input type="text" placeholder="Search for products..." />
         </div>
 
-        <div class="cart">
-          <a href="#">Cart (0)</a>
+        <div class="cart2">
+          <button id="cart-btn">
+            <i class="fa-solid fa-cart-arrow-down"></i>
+          </button>
         </div>
       </div>
     </nav>
+    <div class="cart-overlay" id="cart-overlay"></div>
+
+    <
+    <div class="cart" id="cart">
+      <h2>Cart</h2>
+
+      <div class="cart__items" id="cart-items"></div>
+
+      <h3 class="total">Total : <span id="total"></span></h3>
+    </div>
 
     <div class="panner">
       <div class="content">
@@ -138,7 +152,7 @@
           quisquam exercitationem ducimus dolor! Repellat maxime sint ducimus
           laborum vero voluptatibus!
         </p>
-        <button class="btn btn-dark">Shop now</button>
+        <a class="btn btn-dark" href="all-products.html">Shop now</a>
         <div class="numbers">
           <div class="numbers-content">
             <h3>200+</h3>
@@ -168,12 +182,12 @@
     </div>
 
     <div class="new-arrival">
-      <h2 class="heading">New Arrivals</h2>
+      <h2 class="heading" id="newArrival">New Arrivals</h2>
 
       <div class="products" id="products"></div>
 
       <div>
-        <a class="btn-dark" href="#">Show More</a>
+        <a class="btn-dark" href="all-products.html">Show More</a>
       </div>
     </div>
 
@@ -181,7 +195,7 @@
       <h2 class="heading">Top selling</h2>
       <div id="top-selling" class="products"></div>
       <div>
-        <a class="btn-dark" href="#">Show More</a>
+        <a class="btn-dark" href="all-products.html">Show More</a>
       </div>
     </div>
     <div class="dress-style">
@@ -390,5 +404,6 @@
       });
     </script>
     <script src="script.js"></script>
+    <script src="cart.js"></script>
   </body>
 </html>
