@@ -1,0 +1,199 @@
+.main-nav {
+  /* max-width: 1200px; */
+  margin: 0px auto;
+  /* border-radius: 15px; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 5%; /* Starting padding (larger) */
+  background-color: rgba(255, 255, 255, 1); /* Solid white by default */
+  border-bottom: 1px solid transparent;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+
+  position: sticky;
+  top: 0;
+  z-index: 1000; 
+  transition:
+    padding 0.3s ease,
+    background-color 0.3s ease,
+    border-bottom 0.3s ease,
+    backdrop-filter 0.3s ease;
+}
+
+.main-nav.scrolled {
+  padding: 10px 5%;
+
+  /* Make the background 70% transparent white */
+  background-color: rgba(255, 255, 255, 0.7);
+
+  /* THE GLASS EFFECT: Blurs whatever is behind the nav bar */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* For Safari support */
+
+  /* Optional: Add a subtle border and shadow to separate it from the content */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+/* Optional: Make the logo text shrink slightly too */
+.main-nav .main-logo a {
+  transition: font-size 0.3s ease;
+}
+
+.main-nav.scrolled .main-logo a {
+  font-size: 26px; /* Shrinks from the original 32px */
+}
+
+/* Logo Styling */
+.main-logo {
+  a {
+    color: #111;
+    font-size: 32px;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: -1px; /* Tighter tracking for modern branding */
+  }
+}
+
+/* Navigation Links */
+.links {
+  ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    margin: 0; /* CRITICAL: Fixes the vertical centering issue! */
+    padding: 0; /* CRITICAL: Removes default indentation */
+  }
+
+  a {
+    text-decoration: none;
+    color: #111;
+    font-weight: 500;
+    font-size: 16px;
+    text-transform: capitalize;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #666; /* Smooth hover effect */
+    }
+  }
+}
+.pagination-btn.active {
+  background-color: black;
+  color: white;
+}
+
+/* Right Side Actions Wrapper */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.cart a {
+  text-decoration: none;
+  color: #111;
+  font-weight: 500;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease;
+}
+.image-container {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+.product-card:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+.price-stock-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+}
+.product-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #111;
+}
+.stock-badge {
+    font-size: 14px;
+    color: #666;
+}
+.product-brand {
+    padding: 0 15px 10px;
+    font-size: 14px;
+    color: #666;
+}
+.product-title {
+    padding: 0 15px 10px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #111;
+}
+.product-rating {
+    padding: 0 15px 10px;
+    font-size: 14px;
+    color: #666;
+}
+.Above_product-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+.section-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #111;
+}
+.sort-options {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.showing_info {
+    font-size: 14px;
+    color: #666;
+}
+.sort-options select {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 14px;
+}
+.sort-options select:focus {
+    outline: none;
+    border-color: #111;
+}
+#category-filters {
+  max-height: 250px;
+  overflow-y: auto;
+}
