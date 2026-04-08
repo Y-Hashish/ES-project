@@ -31,7 +31,9 @@
 
       <div class="links">
         <ul>
-          <li><a href="#" >Category</a></li>
+          <li class="category-menu" ><a href="#" >Category</a>
+           <div class="category-dropdown" id="category-dropdown"></div></li>
+
           <li><a href="#" class="disabled-link">New Arrivals</a></li>
           <li><a href="all-products.html">All Products</a></li>
         </ul>
@@ -50,7 +52,8 @@
               d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"
             />
           </svg>
-          <input type="text" placeholder="Search for products..." />
+          <input type="text" id="search-input" placeholder="Search for products..." />
+           <div id="search-results" class="search-results"></div>
         </div>
 
         <div class="cart2">
@@ -72,9 +75,9 @@
 
     <main>
         <div class="breadcrumb">
-          <a href="index2.html">Home</a> &gt; <span id="current-category">All Products</span>
+          <a href="index2.html">Home</a> &gt; <span id="current-page">All Products</span>
         </div>
-
+        <div  class="parent_div">
         <div class="filters">
           <h2>Filters</h2>
 
@@ -91,10 +94,11 @@
             <input type="range" id="price-range" min="0.79" max="36999.99" step="100" />
             <span id="price-range-value">Up to $18000.79</span>
           </div>
+        </div>
 
 
 
-
+        <div class="product-section">
         <div class="Above_product-grid" id="Above_product-grid">
         <h1 class="section-title"><span id="section-title">All Products</span></h1>
 
@@ -120,8 +124,75 @@
             </div>
             <button id="next-page" >Next</button>
         </div>
+        </div>
+        </div>
 
       </main>
+
+       <footer>
+      <div class="subscribe">
+        <h3>stey upto date about our latest offers</h3>
+        <div class="form">
+          <input type="email" placeholder="Enter your email address" />
+          <button class="btn-white">Subscribe to Newsletter</button>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="logo2">
+          <img src="images/YH_Market_Logo_stacked.png" alt="" />
+          <p>
+            We have clothes that suits your style and which you’re proud to
+            wear. From women to men.
+          </p>
+          <div class="social">
+            <img src="images/gym.jpg" alt="" />
+            <img src="images/gym.jpg" alt="" />
+            <img src="images/gym.jpg" alt="" />
+            <img src="images/gym.jpg" alt="" />
+          </div>
+        </div>
+        <div class="list">
+          <ul>
+            <li>Company</li>
+            <li>About</li>
+            <li>Feature</li>
+            <li>Works</li>
+            <li>Career</li>
+          </ul>
+        </div>
+        <div class="list">
+          <ul>
+            <li>Help</li>
+            <li>Cutomer Support</li>
+            <li>Delivery Details</li>
+            <li>Terms & Conditions</li>
+            <li>Privacy Policy</li>
+          </ul>
+        </div>
+        <div class="list">
+          <ul>
+            <li>FAQ</li>
+            <li>Account</li>
+            <li>Manage Deliveries</li>
+            <li>Orders</li>
+            <li>Payments</li>
+          </ul>
+        </div>
+        <div class="list">
+          <ul>
+            <li>Resorces</li>
+            <li>Free eBooks</li>
+            <li>Development Tutorial</li>
+            <li>How to -Blog</li>
+            <li>Youtube Playlist</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copy-right">
+        <hr />
+        YS-Market &copy; 2025-2026, All Rights Reserved
+      </div>
+    </footer>
       
       <script src="all-products_JS.js"></script>
       <script src="cart.js"></script>

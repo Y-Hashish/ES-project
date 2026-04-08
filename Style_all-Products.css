@@ -1,12 +1,12 @@
-.main-nav {
-  /* max-width: 1200px; */
+/* .main-nav {
+  
   margin: 0px auto;
-  /* border-radius: 15px; */
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 5%; /* Starting padding (larger) */
-  background-color: rgba(255, 255, 255, 1); /* Solid white by default */
+  padding: 15px 5%; 
+  background-color: rgba(255, 255, 255, 1); 
   border-bottom: 1px solid transparent;
   font-family:
     system-ui,
@@ -26,48 +26,48 @@
 .main-nav.scrolled {
   padding: 10px 5%;
 
-  /* Make the background 70% transparent white */
+
   background-color: rgba(255, 255, 255, 0.7);
 
-  /* THE GLASS EFFECT: Blurs whatever is behind the nav bar */
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px); /* For Safari support */
 
-  /* Optional: Add a subtle border and shadow to separate it from the content */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); 
+
+  
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
-/* Optional: Make the logo text shrink slightly too */
+
 .main-nav .main-logo a {
   transition: font-size 0.3s ease;
 }
 
 .main-nav.scrolled .main-logo a {
-  font-size: 26px; /* Shrinks from the original 32px */
-}
+  font-size: 26px; 
+} */
 
 /* Logo Styling */
-.main-logo {
+/* .main-logo {
   a {
     color: #111;
     font-size: 32px;
     font-weight: 800;
     text-transform: uppercase;
     text-decoration: none;
-    letter-spacing: -1px; /* Tighter tracking for modern branding */
+    letter-spacing: -1px;
   }
-}
+} */
 
 /* Navigation Links */
-.links {
+ /* .links {
   ul {
     list-style: none;
     display: flex;
     align-items: center;
     gap: 32px;
-    margin: 0; /* CRITICAL: Fixes the vertical centering issue! */
-    padding: 0; /* CRITICAL: Removes default indentation */
+    margin: 0; 
+    padding: 0; 
   }
 
   a {
@@ -79,17 +79,17 @@
     transition: color 0.2s ease;
 
     &:hover {
-      color: #666; /* Smooth hover effect */
+      color: #666; 
     }
   }
 }
 .pagination-btn.active {
   background-color: black;
   color: white;
-}
+}  */
 
 /* Right Side Actions Wrapper */
-.nav-actions {
+/* .nav-actions {
   display: flex;
   align-items: center;
   gap: 24px;
@@ -106,9 +106,9 @@
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     padding: 20px;
-}
+} */
 
-.product-card {
+/* .product-card {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -193,14 +193,360 @@
     outline: none;
     border-color: #111;
 }
+    */ 
+    a {
+  text-decoration: none;
+  color: #111;
+}
 #category-filters {
-  max-height: 250px;
+
+  max-height: 650px;
   overflow-y: auto;
 }
 
-.disabled-link {
+ .disabled-link {
   pointer-events: none;
   opacity: 0.5;
   cursor: not-allowed;
+} 
+
+
+.parent_div{
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  gap: 30px;
 }
 
+.filters {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  height: fit-content;
+  border: 1px solid #eee;
+  position: sticky;
+  top: 100px;
+}
+
+/* Title */
+.filters h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* Each section */
+.filter-group {
+  margin-bottom: 25px;
+}
+
+.filter-group h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #666;
+}
+
+#category-filters {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category-item {
+  margin-bottom: 8px;
+}
+.breadcrumb {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.current-page {
+  color: #111;
+  font-weight: 600;
+}
+.category-item a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #111;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+.All-Categories_item_class {
+  background: #f0f0f0;
+  color: #111;
+  font-weight: 600;
+}
+/* Hover */
+.category-item a:hover {
+  background: #f5f5f5;
+  transform: translateX(3px);
+  color: rgba(0, 0, 0, .5);
+}
+
+#price-range {
+  width: 100%;
+  margin-top: 10px;
+  appearance: none;
+  height: 6px;
+  border-radius: 10px;
+  background: #ddd;
+  outline: none;
+}
+
+/* Thumb */
+#price-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: black;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Text */
+#price-range-value {
+  display: block;
+  margin-top: 10px;
+  font-size: 13px;
+  color: #666;
+}
+
+.Above_product-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px 20px;
+}
+
+/* Sort dropdown */
+#sort-options {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+}
+
+#sort-options:hover {
+  border-color: #111;
+}
+
+#under_product-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 30px 0;
+}
+
+.pagination-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+}
+
+.pagination-btn.active {
+  background: black;
+  color: white;
+}
+
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 28px;
+  padding: 30px;
+}
+
+/* Product Card */
+.product-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hover Effect زي الهوم */
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Image */
+.image-container {
+  width: 100%;
+  height: 220px;
+  background: #f7f7f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-container img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+}
+
+.product-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Brand */
+.product-brand {
+  font-size: 13px;
+  color: #888;
+  padding: 15px 15px 5px;
+  text-transform: uppercase;
+}
+
+/* Title */
+.product-title {
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0 15px;
+  color: #111;
+}
+
+/* Rating */
+.product-rating {
+  padding: 8px 15px;
+  font-size: 14px;
+  color: #f5a623;
+}
+
+/* Price + Stock */
+.price-stock-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin-top: auto;
+}
+
+/* Price */
+.product-price {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111;
+}
+
+/* Stock */
+.stock-badge {
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 20px;
+  background: #eee;
+}
+
+/* In Stock */
+.in-stock {
+  background: #d4f5df;
+  color: #1a7f37;
+}
+
+/* Out Stock */
+.out-stock {
+  background: #ffe5e5;
+  color: #d32f2f;
+}
+
+
+body {
+  background-color: #f9f9f9;
+}
+
+/* Title Section */
+.section-title {
+  font-size: 28px;
+  font-weight: 800;
+}
+
+/* Filter Box */
+.filters {
+  padding: 20px;
+}
+
+/* Buttons */
+#prev-page,
+#next-page {
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: none;
+  background: black;
+  color: white;
+  transition: 0.3s;
+}
+
+#prev-page:hover,
+#next-page:hover {
+  background: #333;
+} 
+
+.search {
+  position: relative;
+}
+
+.search-results {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  max-height: 300px;
+  overflow-y: auto;
+  display: none;
+  z-index: 999;
+}
+
+.search-item {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.search-item:hover {
+  background: #f5f5f5;
+}
+
+.category-menu {
+  position: relative;
+}
+
+/* Dropdown */
+.category-dropdown {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  width: 220px;
+  max-height: 300px;
+  overflow-y: auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  display: none;
+  z-index: 999;
+}
+
+/* Items */
+.category-item {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.category-item:hover {
+  background: #f5f5f5;
+}
