@@ -251,4 +251,33 @@ function local() {
   const myCartItems = JSON.parse(localStorage.getItem("shop_co_cart"));
   console.log(myCartItems);
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const navbar = document.getElementById("main-nav");
+
+  window.addEventListener("scroll", () => {
+    // If the page is scrolled down more than 50px
+    if (window.scrollY > 50) {
+      navbar.classList.add("scrolled");
+    } else {
+      // If we are at the very top of the page
+      navbar.classList.remove("scrolled");
+    }
+  });
+});
+
+const cartPanel = document.getElementById("cart");
+const overlay = document.getElementById("cart-overlay");
+const btn = document.getElementById("cart-btn");
+
+btn.addEventListener("click", () => {
+  cartPanel.classList.toggle("active");
+  overlay.classList.toggle("active");
+});
+
+// Close when clicking outside
+overlay.addEventListener("click", () => {
+  cartPanel.classList.remove("active");
+  overlay.classList.remove("active");
+});
 feather.replace();
