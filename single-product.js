@@ -280,8 +280,7 @@ overlay.addEventListener("click", () => {
   cartPanel.classList.remove("active");
   overlay.classList.remove("active");
 });
-
-/* =======================*/
+feather.replace();
 
 const cart = document.getElementById("cart-items");
 const totalPrice = document.getElementById("total");
@@ -302,7 +301,7 @@ function showCart() {
   // ADDED 'index' to the loop so we know exactly which item we are modifying
   lop.forEach((element, index) => {
     const container = document.createElement("div");
-    container.classList.add("cart-item");
+    container.classList.add("container2");
 
     const imgContainer = document.createElement("div");
     imgContainer.classList.add("image-container-cart");
