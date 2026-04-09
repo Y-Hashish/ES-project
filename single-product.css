@@ -7,6 +7,19 @@
   background: white;
   border-bottom: 1px solid #f0f0f0;
 }
+.nav_logo {
+  width: 60px;      /* صغّر الحجم */
+  height: auto;
+  object-fit: contain;
+    /* width: 55px; */
+  transform: translateY(20px); /* ارفع لفوق */
+}
+ .disabled-link {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+} 
+
 .nav-inner {
   max-width: 1200px;
   margin: 0 auto;

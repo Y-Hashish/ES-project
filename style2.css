@@ -4,6 +4,11 @@
   box-sizing: border-box; /* prevent padding/margin from causing overflow */
 }
 
+.nav_logo {
+  width: 60px;      /* صغّر الحجم */
+  height: auto;
+  object-fit: contain;
+}
 body {
   min-height: 100vh;
   /* background-image: url(images/background.jpg); */
