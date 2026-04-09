@@ -11,8 +11,8 @@
     />
 
     <link rel="stylesheet" href="single-product.css" />
-
-    <link rel="stylesheet" href="cart.css" />
+    <link rel="stylesheet" href="style2.css" />
+    <!-- <link rel="stylesheet" href="cart.css" /> -->
   </head>
   <body>
     <nav class="main-nav" id="main-nav">
@@ -22,8 +22,10 @@
 
       <div class="links">
         <ul>
-                    <li class="category-menu" ><a href="#" >Category</a>
-           <div class="category-dropdown" id="category-dropdown"></div></li>
+          <li class="category-menu">
+            <a href="#">Category</a>
+            <div class="category-dropdown" id="category-dropdown"></div>
+          </li>
           <li><a href="#">New Arrivals</a></li>
           <li><a href="all-products.html">All Products</a></li>
         </ul>
@@ -42,9 +44,13 @@
               d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"
             />
           </svg>
-       
-                    <input type="text" id="search-input" placeholder="Search for products..." />
-           <div id="search-results" class="search-results"></div>
+
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search for products..."
+          />
+          <div id="search-results" class="search-results"></div>
         </div>
 
         <div class="cart2">
@@ -54,7 +60,9 @@
         </div>
       </div>
     </nav>
-              <a href="index2.html">Home</a> &gt; <a  href="all-products.html" >All Products</a>&gt; <span id="current-product">Product Name</span>
+    <a href="index2.html">Home</a> &gt;
+    <a href="all-products.html">All Products</a>&gt;
+    <span id="current-product">Product Name</span>
 
     <div class="cart-overlay" id="cart-overlay"></div>
 
@@ -181,11 +189,10 @@
         </div>
       </div>
     </div>
-    
+
     <button onclick="local()">see local storage</button>
 
- 
-    <script src="cart.js"></script>
+    <!-- <script src="cart.js"></script> -->
     <script src="single-product.js"></script>
   </body>
 </html>
