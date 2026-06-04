@@ -236,6 +236,9 @@ function renderProducts(pp, firstprodindecator, lastprodindecator) {
     price.textContent = `$${p.price}`;
     rating.textContent = ratingToStars(p.rating || 0);
 
+    productCard.addEventListener("click", () => {
+    window.location.href = `single-product.html?id=${p.id}`;});
+
     if (Number(p.stock) > 0) {
       stock.textContent = `Stock: ${p.stock}`;
       stock.classList.add("stock-badge", "in-stock");
@@ -284,6 +287,9 @@ function priceFilter(link) {
       const newPriceRange = document.getElementById("price-range");
       newPriceRange.addEventListener("input", () => {
         priceValue.textContent = `Up to $${newPriceRange.value}`;
+      });
+      newPriceRange.addEventListener("change", () => {
+        // priceValue.textContent = `Up to $${newPriceRange.value}`;
         currentprice = newPriceRange.value;
 
         if (!currentproductsingrid) return;
@@ -303,11 +309,11 @@ function priceFilter(link) {
     });
 }
 priceFilter(
-  "https://dummyjson.com/products?limit=0&skip=&select=title,price,rating,images,stock,brand",
+  "https://dummyjson.com/products?limit=0&skip=&select=id,title,price,rating,images,stock,brand",
 );
 
 function renderProductsbylink(
-  link = "https://dummyjson.com/products?limit=0&skip=&select=title,price,rating,images,stock,brand",
+  link = "https://dummyjson.com/products?limit=0&skip=&select=id,title,price,rating,images,stock,brand",
 ) {
   currentPage = 1;
   fetch(link)
@@ -336,15 +342,16 @@ fetch("https://dummyjson.com/products/category-list")
     categoryLink.addEventListener("click", (e) => {
       e.preventDefault();
       renderProductsbylink(
-        `https://dummyjson.com/products?limit=0&skip=&select=title,price,rating,images,stock,brand`,
+        `https://dummyjson.com/products?limit=0&skip=&select=id,title,price,rating,images,stock,brand`,
       );
       priceFilter(
-        `https://dummyjson.com/products?limit=0&skip=&select=title,price,rating,images,stock,brand`,
+        `https://dummyjson.com/products?limit=0&skip=&select=id,title,price,rating,images,stock,brand`,
       );
     });
     categoryLink.textContent = "All Categories";
     categoryli.appendChild(categoryLink);
     categoryli.classList.add("category-item");
+    categoryli.classList.add("All-Categories_item_class");
     categoryContainer.appendChild(categoryli);
     categories.forEach((category) => {
       const categoryli = document.createElement("li");
@@ -353,13 +360,14 @@ fetch("https://dummyjson.com/products/category-list")
       categoryLink.addEventListener("click", (e) => {
         currentPage = 1;
         e.preventDefault();
+        priceValue.textContent = `Filter by your max budget`;
         renderProductsbylink(
           `https://dummyjson.com/products/category/${encodeURIComponent(category)}`,
         );
         priceFilter(
           `https://dummyjson.com/products/category/${encodeURIComponent(category)}`,
         );
-      });
+      }); 
       categoryLink.textContent = category;
       categoryli.appendChild(categoryLink);
       categoryli.classList.add("category-item");
@@ -404,4 +412,88 @@ btn.addEventListener("click", () => {
 overlay.addEventListener("click", () => {
   cartPanel.classList.remove("active");
   overlay.classList.remove("active");
+});
+
+//search 
+const input = document.getElementById("search-input");
+const resultsBox = document.getElementById("search-results");
+
+input.addEventListener("input", () => {
+  const query = input.value.trim();
+
+  if (query.length < 2) {
+    resultsBox.style.display = "none";
+    return;
+  }
+
+  fetch(`https://dummyjson.com/products/search?q=${query}`)
+    .then(res => res.json())
+    .then(data => {
+      resultsBox.innerHTML = "";
+
+      if (data.products.length === 0) {
+        resultsBox.innerHTML = `<div class="search-item">No results</div>`;
+      } else {
+        data.products.slice(0, 6).forEach(p => {
+          const item = document.createElement("div");
+          item.classList.add("search-item");
+          item.textContent = p.title;
+
+          // لما تدوس عليه
+          item.addEventListener("click", () => {
+            window.location.href = `single-product.html?id=${p.id}`;
+          });
+
+          resultsBox.appendChild(item);
+        });
+      }
+
+      resultsBox.style.display = "block";
+    });
+});
+
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".search")) {
+    resultsBox.style.display = "none";
+  }
+});
+
+//category dropdown
+const dropdown = document.getElementById("category-dropdown");
+
+fetch("https://dummyjson.com/products/category-list")
+  .then((res) => res.json())
+  .then((data) => {
+    data.forEach((cat) => {
+      const item = document.createElement("div");
+      item.classList.add("category-item");
+      item.textContent = cat;
+
+      item.addEventListener("click", (e) => {
+
+
+        currentPage = 1;
+        e.preventDefault();
+        priceValue.textContent = `Filter by your max budget`;
+        renderProductsbylink(
+          `https://dummyjson.com/products/category/${encodeURIComponent(cat)}`,
+        );
+        priceFilter(
+          `https://dummyjson.com/products/category/${encodeURIComponent(cat)}`,
+        );
+       
+      });
+
+      dropdown.appendChild(item);
+    });
+  });
+
+  const categoryMenu = document.querySelector(".category-menu");
+
+categoryMenu.addEventListener("mouseenter", () => {
+  dropdown.style.display = "block";
+});
+
+categoryMenu.addEventListener("mouseleave", () => {
+  dropdown.style.display = "none";
 });
